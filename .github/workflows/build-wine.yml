@@ -8,7 +8,7 @@ on:
       wine_branch:
         description: 'Wine branch (e.g., "wine-11.3"). Leave blank to auto-detect latest.'
         required: false
-        default: ''
+        default: 'wine-11.3'
       arch:
         description: 'Architecture to build'
         required: false
@@ -24,7 +24,7 @@ permissions:
 
 env:
   # GameNative's upstream Wine fork (with Android/Bionic patches)
-  WINE_REPO: GameNative/wine
+  WINE_REPO: TouseefX/wine
   # Toolchain versions
   NDK_VERSION: '27.3.13750724'
   LLVM_MINGW_VERSION: '20250920'
