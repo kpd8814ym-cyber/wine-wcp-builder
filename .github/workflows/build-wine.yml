@@ -195,6 +195,11 @@ jobs:
         run: |
           bash build-scripts/build-step-arm64ec.sh --build-sysvshm
 
+      - name: Skip incompatible GameNative patches
+        run: |
+          sed -i 's/^#      if git apply --check/      if git apply --check/' wine-src/build-scripts/build-step-x86_64.sh
+          sed -i 's/^#      fi/      fi/' wine-src/build-scripts/build-step-x86_64.sh
+
       - name: Configure Wine
         working-directory: wine-src
         run: |
