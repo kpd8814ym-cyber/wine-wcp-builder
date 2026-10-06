@@ -128,6 +128,28 @@ jobs:
           cd wine-src
           git apply ../softdenchi-fixes.patch
 
+      - name: Make GameNative patches version-safe
+        run: |
+          python3 - <<'PYFIX'
+          from pathlib import Path
+
+          p = Path("wine-src/build-scripts/build-step-x86_64.sh")
+          s = p.read_text()
+
+          s = s.replace(
+          '''#      if git apply --check ./android/patches/$patch 2>/dev/null; then
+        git apply ./android/patches/$patch
+#      fi''',
+          '''      if git apply --check ./android/patches/$patch 2>/dev/null; then
+        git apply ./android/patches/$patch
+      else
+        echo "Skipping incompatible patch: $patch"
+      fi'''
+          )
+
+          p.write_text(s)
+          PYFIX
+
       # ── Termux sysroot ──────────────────────────────────────────────────
       - name: Download termuxfs
         run: |
