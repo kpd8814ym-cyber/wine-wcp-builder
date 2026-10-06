@@ -121,6 +121,13 @@ jobs:
           git clone --depth=1 --branch "${WINE_BRANCH}" \
             "https://github.com/${WINE_REPO}.git" wine-src
 
+      - name: Apply SoftDenchi patch
+        run: |
+          curl -L -o softdenchi-fixes.patch \
+            https://raw.githubusercontent.com/fitudao3788/wine-patches/refs/heads/wine-11.0/patch/softdenchi-fixes.patch
+          cd wine-src
+          git apply ../softdenchi-fixes.patch
+
       # ── Termux sysroot ──────────────────────────────────────────────────
       - name: Download termuxfs
         run: |
