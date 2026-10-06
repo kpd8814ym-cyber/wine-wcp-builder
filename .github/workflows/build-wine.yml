@@ -24,7 +24,7 @@ permissions:
 
 env:
   # GameNative's upstream Wine fork (with Android/Bionic patches)
-  WINE_REPO: TouseefX/wine
+  WINE_REPO: GameNative/wine
   # Toolchain versions
   NDK_VERSION: '27.3.13750724'
   LLVM_MINGW_VERSION: '20250920'
